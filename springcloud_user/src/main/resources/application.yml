@@ -1,0 +1,46 @@
+server:
+  port: ${port}
+  context-path:  /ribbon #服务端口
+
+spring:
+  application:
+    name: springcloud-user-v1  #指定服务名
+# = = = = = = = = = = = = = = = == = = = = = = = = = == = = = = = = = = = = = = = =
+
+eureka:
+  client:
+    registerWithEureka: true #是否将自己注册到eureka服务中，本身就是所有无需注册 ,默认为true
+    fetchRegistry: true #是否从eureka服务中获取信息 ,默认为true
+    serviceUrl: #Eureka客户端与Eureka服务端交互地址
+       defaultZone:  http://localhost:6868/eureka,http://localhost:6869/eureka #Eureka注册中心的地址
+       eurekaServerConnectionTimeoutSeconds: 60
+       eurekaServerReadTimeoutSeconds: 60
+  instance:
+    prefer-ip-address: true 
+    home-page-url-path: /ribbon #如果是反向代理，则使用home-page-url: 
+    metadata-map: 
+      management.port: 8910
+  server:
+    enable-self-preservation: false #禁用自我保护模式
+    eviction-interval-timer-in-ms: 60000 #清理间隔（单位毫秒，默认是60*1000）
+###########################################################################################
+feign:
+  hystrix:
+    enabled: true
+    
+turbine:
+  aggregator:
+    clusterConfig: SPRINGCLOUDUSER  //监控的客户端名
+  app-config: SPRINGCLOUDUSER
+
+
+###########################################################################################
+logging:
+  level:
+    com.ling.springcloud_user.service.OrderInterface: DEBUG  #给指定的feign设置日志输出级别，只有在debug的情况下才会打印日日志
+    root: info
+  file: /log/log/order.log
+management:
+  port: 8910
+zuul:
+  prefix: /api  #为所有映射添加前缀

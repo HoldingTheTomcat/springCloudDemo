@@ -1,0 +1,30 @@
+server:
+  port: ${port} #服务端口
+
+spring:
+  application:
+    name: SpringcloudOrder  #指定服务名
+# = = = = = = = = = = = = = = = == = = = = = = = = = == = = = = = = = = = = = = = =
+
+eureka:
+  client:
+    registerWithEureka: true #是否将自己注册到eureka服务中，本身就是所有无需注册 ,默认为true
+    fetchRegistry: true #是否从eureka服务中获取信息 ,默认为true
+    serviceUrl: #Eureka客户端与Eureka服务端交互地址
+       defaultZone:  http://localhost:6868/eureka,http://localhost:6869/eureka #Eureka注册中心的地址
+       eurekaServerConnectionTimeoutSeconds: 60
+       eurekaServerReadTimeoutSeconds: 60
+  instance:
+    prefer-ip-address: true #将自己的ip注册到Eureka服务中
+    ip-address: 127.0.0.1
+    instance-id: ${spring.application.name}:${server.port} #指定实例Id
+  server:
+    enable-self-preservation: false #禁用自我保护模式
+    eviction-interval-timer-in-ms: 60000 #清理间隔（单位毫秒，默认是60*1000）
+
+###########################################################################################
+logging:
+  level:
+    root: info
+# org.springframework.web:DEBUG
+  file: /log/log/order.log
