@@ -1,12 +1,8 @@
 package com.ling.springcloud_user.config;
 
-import feign.Contract;
-import feign.Logger;
-import feign.auth.BasicAuthRequestInterceptor;
-import org.springframework.cloud.netflix.feign.support.SpringMvcContract;
+import org.jboss.logging.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.convert.ConversionService;
 
 /**
  * Created by LingZi on 2018/11/25.
@@ -19,7 +15,7 @@ public class FeignClientConfig2 {
      */
     @Bean
     Logger.Level feignLoggerLevel(){
-        return Logger.Level.FULL;
+        return Logger.Level.DEBUG;
     }
 
     
