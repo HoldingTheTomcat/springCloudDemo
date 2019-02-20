@@ -47,12 +47,15 @@ public interface OrderInterface {
                 }
 
                 @Override
+                public Order getOrder() {
+                    return null;
+                }
+
+                @Override
                 public Order getOrder2(Order order) {
                     LOGGER.info("fallback; reason was:", throwable);
                     return null;
                 }
-
-              
             };
         }
     }
@@ -60,13 +63,13 @@ public interface OrderInterface {
     @RequestMapping(value = "ling/{id}", method = RequestMethod.GET)
     Order getOrderInfo(@PathVariable("id") String id);
 
-  /*  @RequestMapping("GET /ling")
-    Order getOrder();*/
+    @RequestMapping("GET /ling")
+    Order getOrder();
 
     @PostMapping(value = "ling")
     Order getOrder2(Order order);//如果你传递的是复杂参数，那么feign不管你配置的是什么请求方式，都会以post方式发出去，所以这里访问不到
 
     
-    /* @RequestLine("GET /ling/{id}") //组合注解，第一个是请求方式，第二个参数，用空格分隔
-    Order getOrder3(@Param("id") String id);//注意，使用RequestLine的时候必须使用@Param注解*/
+    // @RequestLine("GET /ling/{id}") //组合注解，第一个是请求方式，第二个参数，用空格分隔
+    // Order getOrder3(@Param("id") String id);//注意，使用RequestLine的时候必须使用@Param注解
 }
