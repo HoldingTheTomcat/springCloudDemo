@@ -18,8 +18,8 @@ eureka:
        eurekaServerReadTimeoutSeconds: 60
   instance:
     prefer-ip-address: true #将自己的ip注册到Eureka服务中
-    ip-address: 127.0.0.1
-    instance-id: ${spring.application.name}:${server.port} #指定实例Id
+    ip-address: 127.0.0.1 # 指定自己的ip信息，不指定的话会自己寻找
+    instance-id: ${spring.application.name}:${server.port} #指定实例Id，一个服务下面可以有多个实例，即eureka服务可以有集群
   server:
     enable-self-preservation: false #禁用自我保护模式
     eviction-interval-timer-in-ms: 60000 #清理间隔（单位毫秒，默认是60*1000）

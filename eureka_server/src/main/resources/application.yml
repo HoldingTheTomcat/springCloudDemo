@@ -17,7 +17,7 @@ eureka:
   
   instance: # 多个eureka时才需要配置，单个时不需要
     prefer-ip-address: true #将自己的ip注册到Eureka服务中
-    ip-address: 127.0.0.1
+    ip-address: 127.0.0.1   # 指定自己的ip信息，不指定的话会自己寻找
     instance-id: ${spring.application.name}:${server.port} #指定实例Id
   server:
     enable-self-preservation: false #禁用自我保护模式
