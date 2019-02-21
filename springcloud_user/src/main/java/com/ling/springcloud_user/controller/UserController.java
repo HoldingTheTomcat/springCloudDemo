@@ -19,10 +19,23 @@ import org.springframework.web.client.RestTemplate;
 public class UserController {
 
     @Autowired
-    private EurekaClient eurekaClient;
+    private RestTemplate restTemplate;
+
+    @RequestMapping("info2")
+    @ResponseBody
+    public Order info2() {
+        Order forObject = this.restTemplate.getForObject("http://SPRINGCLOUDORDER/ling", Order.class);
+        return forObject;
+    }
+    
 
     @Autowired
-    private RestTemplate restTemplate;
+    private EurekaClient eurekaClient;
+
+   
+
+
+   
     
     @RequestMapping("info")
     @ResponseBody
@@ -30,15 +43,9 @@ public class UserController {
         InstanceInfo nextServerFromEureka = eurekaClient.getNextServerFromEureka("SPRINGCLOUDORDER", false);
         return nextServerFromEureka.getHomePageUrl();
     }
-
-    @RequestMapping("info2")
-    @ResponseBody
-    @HystrixCommand(fallbackMethod = "fallMethod", commandProperties = {@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE")})
-    public Order info2() {
-        Order forObject = this.restTemplate.getForObject("http://SPRINGCLOUDORDER/ling", Order.class);
-        return forObject;
-    }
     
+
+  
     public Order fallMethod(){
         Order order = new Order();
         order.setName("haha");

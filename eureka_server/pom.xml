@@ -40,12 +40,12 @@
     </dependencyManagement>
 
     <dependencies>
-
         <!--导入eureka server的依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
+
     </dependencies>
 
     <build>

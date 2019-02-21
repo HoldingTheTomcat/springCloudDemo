@@ -3,7 +3,12 @@ server:
   
 spring:
   application:
-    name: user-client  #指定服务名
+    name: user-client #指定服务名
+  
+  cloud:
+    loadbalancer:
+      retry:
+        enabled:  true # 开启Spring Cloud的重试功能
 
 eureka:
   client:
@@ -24,3 +29,15 @@ logging:
     com.ling.springcloud_user.service.OrderInterface: DEBUG  #给指定的feign设置日志输出级别，只有在debug的情况下才会打印日日志
     root: info
   file: /log/log/order.log
+  
+spring-cloud-order:  #服务提供方名
+    ribbon:
+      NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule  #负载均衡策略
+      
+      #重试机制相关配置
+      ConnectTimeout: 250 # Ribbon的连接超时时间，超过这个时间就认为这个服务不可用了，重试下一个
+      ReadTimeout: 1000 # Ribbon的数据读取超时时间，读取超时后重试下一个
+      OkToRetryOnAllOperations: true # 是否对所有操作都进行重试
+      MaxAutoRetriesNextServer: 1 # 切换实例的重试次数，这个联不通，我切下一个，如果还不通，就不会再切了，不能一直切，
+                                  # 浏览器等不及，客户也等不及,所以这里设置只重试一次
+      MaxAutoRetries: 1 # 对当前实例的重试次数，如果当前服务挂了，要不要在当前服务上也重试一下
