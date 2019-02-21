@@ -4,7 +4,6 @@ server:
 spring:
   application:
     name: spring-cloud-order  #指定服务名
-# = = = = = = = = = = = = = = = == = = = = = = = = = == = = = = = = = = = = = = = =
 
 eureka:
   client: #客户端信息
