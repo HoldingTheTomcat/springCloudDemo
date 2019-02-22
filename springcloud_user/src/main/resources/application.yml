@@ -41,3 +41,11 @@ spring-cloud-order:  #服务提供方名
       MaxAutoRetriesNextServer: 1 # 切换实例的重试次数，这个联不通，我切下一个，如果还不通，就不会再切了，不能一直切，
                                   # 浏览器等不及，客户也等不及,所以这里设置只重试一次
       MaxAutoRetries: 1 # 对当前实例的重试次数，如果当前服务挂了，要不要在当前服务上也重试一下
+
+hystrix: #熔断超时时间设置
+  command:
+  	default:
+        execution:
+          isolation:
+            thread:
+              timeoutInMillisecond: 2000 # 设置hystrix的超时时间为6000ms

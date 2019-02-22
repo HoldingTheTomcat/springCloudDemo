@@ -2,7 +2,7 @@
 package com.ling.springcloud_user.factory;
 
 import com.ling.springcloud_user.entity.Order;
-import com.ling.springcloud_user.service.OrderInterface;
+import com.ling.springcloud_user.service.OrderService;
 import feign.hystrix.FallbackFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,12 +12,12 @@ import org.slf4j.LoggerFactory;
  * 该类需实现FallbackFactory接口，并覆写create方法
  *//*
 
-public class FeignClientFallbackFactory2 implements FallbackFactory<OrderInterface>{
+public class FeignClientFallbackFactory2 implements FallbackFactory<OrderService>{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FeignClientFallbackFactory2.class);
     @Override
-    public OrderInterface create(Throwable throwable) {
-        return new OrderInterface() {
+    public OrderService create(Throwable throwable) {
+        return new OrderService() {
 
             @Override
             public Order getOrder3() {

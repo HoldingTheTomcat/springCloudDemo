@@ -1,65 +1,26 @@
 package com.ling.springcloud_user.controller;
 
 import com.ling.springcloud_user.entity.Order;
-import com.ling.springcloud_user.service.OrderInterface;
-import com.netflix.appinfo.InstanceInfo;
-import com.netflix.discovery.EurekaClient;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.ling.springcloud_user.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * Created by LingZi on 2018/11/24.
  */
 @RestController
+@RequestMapping("user")
 public class UserController {
 
     @Autowired
-    private RestTemplate restTemplate;
-
-    @RequestMapping("info2")
+    private OrderService orderInterface;
+    
+    @RequestMapping("order")
     @ResponseBody
-    public Order info2() {
-        Order forObject = this.restTemplate.getForObject("http://SPRINGCLOUDORDER/ling", Order.class);
-        return forObject;
-    }
-    
-
-    @Autowired
-    private EurekaClient eurekaClient;
-
-   
-
-
-   
-    
-    @RequestMapping("info")
-    @ResponseBody
-    public String  info(){
-        InstanceInfo nextServerFromEureka = eurekaClient.getNextServerFromEureka("SPRINGCLOUDORDER", false);
-        return nextServerFromEureka.getHomePageUrl();
-    }
-    
-
-  
-    public Order fallMethod(){
-        Order order = new Order();
-        order.setName("haha");
-        return order;
-    }
-
-    @Autowired
-    private OrderInterface orderInterface;
-    
-    @RequestMapping("info3")
-    @ResponseBody
-    public Order info3(){
-        Order order3 = orderInterface.getOrder3();
-        return order3;
+    public Order  getOrderInfo(){
+        return orderInterface.getOrderInfo();
     }
     
 }
