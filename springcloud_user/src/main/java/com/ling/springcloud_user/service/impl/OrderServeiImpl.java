@@ -1,8 +1,8 @@
 package com.ling.springcloud_user.service.impl;
 
-import com.ling.springcloud_user.dao.OrderClient;
 import com.ling.springcloud_user.entity.Order;
 import com.ling.springcloud_user.service.OrderService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -19,21 +19,18 @@ public class OrderServeiImpl implements OrderService {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Autowired
-    private OrderClient orderClient;
-
-    //使用feignClient方式调用服务
-    @Override
-    public Order getOrderInfo() {
-        Order order = orderClient.getOrder();
-        return order;
-    }
-
     //使用restTemplate方式调用服务
-    public Order getOrderInfo2() {
+    @HystrixCommand(fallbackMethod = "getOrderInfoFallback")  //超时，触发熔断
+    public Order getOrderInfo() {
         Order forObject = this.restTemplate.getForObject("http://SPRINGCLOUDORDER/ling", Order.class);
         return forObject;
     }
     
+    //熔断响应
+    public Order getOrderInfoFallback(){
+        Order order = new Order();
+        order.setName("哈哈，熔断跳闸");
+        return order;
+    }
     
 }
