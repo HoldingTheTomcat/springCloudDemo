@@ -28,12 +28,5 @@ public class OrderServeiImpl implements OrderService {
         Order order = orderClient.getOrder();
         return order;
     }
-
-    //使用restTemplate方式调用服务
-    public Order getOrderInfo2() {
-        Order forObject = this.restTemplate.getForObject("http://SPRINGCLOUDORDER/ling", Order.class);
-        return forObject;
-    }
-    
     
 }

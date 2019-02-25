@@ -30,7 +30,7 @@ logging:
     root: info
   file: /log/log/order.log
   
-spring-cloud-order:  #服务提供方名
+spring-cloud-order:  #服务提供方名，如果不写服务名，那么是对所有的服务进行负载均衡
     ribbon:
       NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule  #负载均衡策略
       
