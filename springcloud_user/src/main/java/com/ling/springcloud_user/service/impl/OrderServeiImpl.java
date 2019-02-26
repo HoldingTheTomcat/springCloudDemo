@@ -17,9 +17,6 @@ import org.springframework.web.client.RestTemplate;
 public class OrderServeiImpl implements OrderService {
 
     @Autowired
-    private RestTemplate restTemplate;
-
-    @Autowired
     private OrderClient orderClient;
 
     //使用feignClient方式调用服务

@@ -12,7 +12,7 @@ eureka:
     #fetch-registry: true #是否从eureka服务中拉取其它服务的信息 ,默认为true
     
     service-url: #Eureka客户端与Eureka服务端交互地址
-       defaultZone:  http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka #将自己注册到Eureka集群上，注册中心的地址
+       defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka #将自己注册到Eureka集群上，注册中心的地址
        
   instance: #实例信息
     prefer-ip-address: true #将自己的ip注册到Eureka服务中

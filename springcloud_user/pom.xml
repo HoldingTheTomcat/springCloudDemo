@@ -71,11 +71,18 @@
             <artifactId>spring-retry</artifactId>
         </dependency>
 
-        <!-- 声明式调用openfeign，集成了ribbon、hystrix -->
+        <!-- 声明式调用openfeign，集成了ribbon、基本hystrix -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
+
+        <!-- 熔断器hystrix -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+        
     </dependencies>
 
     <build>
