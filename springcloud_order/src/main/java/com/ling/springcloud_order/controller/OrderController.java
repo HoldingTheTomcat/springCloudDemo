@@ -25,7 +25,7 @@ public class OrderController {
         logger.info("服务调用请求.....");
         int localPort = request.getLocalPort();
         // 为了演示超时现象，我们在这里然线程休眠,时间随机 0~2000毫秒
-        // Thread.sleep(new Random().nextInt(2000));
+        Thread.sleep(2000);
         
         Order order = new Order();
         order.setName("ling:"+localPort);

@@ -32,7 +32,7 @@ logging:
   
 spring-cloud-order:  #服务提供方名，如果不写服务名，那么是对所有的服务进行负载均衡
     ribbon:
-      NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule  #负载均衡策略
+      NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule  #负载均衡策略
       
       #重试机制相关配置
       ConnectTimeout: 250 # Ribbon的连接超时时间，超过这个时间就认为这个服务不可用了，重试下一个
