@@ -20,7 +20,7 @@ eureka:
        defaultZone:  http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka #Eureka注册中心的地址
     registry-fetch-interval-seconds: 5 #每隔5秒从EurekaServer获取新的服务列表，默认为30秒
   instance:
-    prefer-ip-address: true #将自己的ip注册到Eureka服务中
+    prefer-ip-address: true #当你获取host时，返回的是ip,而不是主机名
     ip-address: 127.0.0.1 # 指定自己的ip信息，不指定的话会自己寻找
     instance-id: ${spring.application.name}:${server.port} #指定实例Id，一个服务下面可以有多个实例，即eureka服务可以有集群
 

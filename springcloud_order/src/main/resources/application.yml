@@ -15,7 +15,7 @@ eureka:
        defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka #将自己注册到Eureka集群上，注册中心的地址
        
   instance: #实例信息
-    prefer-ip-address: true #将自己的ip注册到Eureka服务中
+    prefer-ip-address: true #当你获取host时，返回的是ip,而不是主机名
     ip-address: 127.0.0.1 # 指定自己的ip信息，不指定的话会自己寻找
     instance-id: ${spring.application.name}:${server.port} #指定实例Id，一个服务下面可以有多个实例，即eureka服务可以有集群
     lease-expiration-duration-in-seconds: 10 # 如果超过10秒没有发送心跳，EurekaServer就会认为该服务宕机，会从服务列表中移除,服务失效时间，默认值90秒
