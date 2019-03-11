@@ -1,5 +1,5 @@
 server:
-  port: ${port}  #服务端口,这里需要配置环境变量
+  port: 10087  #服务端口,这里需要配置环境变量
   
 spring:
   application:
@@ -12,7 +12,7 @@ eureka:
     service-url: #Eureka客户端与Eureka服务端交互地址
        #defaultZone: http://127.0.0.1:10086/eureka
        #defaultZone:  http://127.0.0.1:${server.port}/eureka  #只是单eureka:即上面配置的server.port
-       defaultZone:  ${eureka.server} #用来配置eureka集群：表示将自己注册到另外一个注册中心的地址上,这里需要配置环境变量
+       defaultZone: http://127.0.0.1:10086/eureka #用来配置eureka集群：表示将自己注册到另外一个注册中心的地址上,这里需要配置环境变量
   
   instance: # 实例信息
     prefer-ip-address: true #当你获取host时，返回的是ip,而不是主机名
