@@ -1,5 +1,5 @@
 server:
-  port: ${port} #服务端口
+  port: ${port} #服务端口 -Dport=10088
 
 spring:
   application:
