@@ -16,11 +16,11 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("order")
-@RefreshScope //更新自定义配置文件
+@RefreshScope
 public class OrderController {
 
 
-    // @Value("${ip}")
+    @Value("${ip}")
     private String name;
     
      private Logger logger = LoggerFactory.getLogger(getClass());
@@ -29,13 +29,12 @@ public class OrderController {
     @ResponseBody
     public Order getOrder(HttpServletRequest request) throws InterruptedException {
         logger.info("服务调用请求.....");
-        // int localPort = request.getLocalPort();
+        int localPort = request.getLocalPort();
         // // 为了演示超时现象，我们在这里然线程休眠,时间随机 0~2000毫秒
         // Thread.sleep(2000);
-        //
-        // Order order = new Order();
-        // order.setName("ling:"+localPort);
+        Order order = new Order();
+        order.setName("ling:"+localPort);
         logger.info("name:{}", name);
-        return null;
+        return order;
     }
 }
