@@ -8,11 +8,11 @@ spring:
     config:
       server:
         git:
-          basedir: D:/studySpace/springCloudDemo/springcloud-config/application
+          basedir: D:/studySpace/springCloudDemo/springcloud-config/userconfig
           uri: git@github.com:HoldingTheTomcat/userconfig.git #默认配置
-          search-paths: '{application}'  #需要在userconfig仓库创建application占位符对应的文件夹，并在该文件下，创建application对应的文件
-                                         #config客户端用的时候，name就是对应的application,
-                                         #这样就可以实现不同项目根据不同文件夹区分，而不用创建多个仓库来区分
+          search-paths: 
+            - abc  # 需要在仓库userconfig下仓库abc文件夹，并在abc文件夹下创建abc文件,abc就做为config客户端的name
+            - def  # 需要在仓库userconfig下仓库def文件夹，并在abc文件夹下创建def文件,def就做为config客户端的name
 
 #  security:
 #    user:
