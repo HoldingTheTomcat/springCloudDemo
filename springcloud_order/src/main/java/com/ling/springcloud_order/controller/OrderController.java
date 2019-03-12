@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 public class OrderController {
 
 
-    @Value("${lingname}")
+    // @Value("${ip}")
     private String name;
     
      private Logger logger = LoggerFactory.getLogger(getClass());

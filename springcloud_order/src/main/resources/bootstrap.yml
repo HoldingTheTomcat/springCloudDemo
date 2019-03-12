@@ -1,11 +1,13 @@
 spring:
+  application:
+    name: order  #指定服务名
   cloud:
     config:
       discovery:
         enabled: true
         service-id: SPRINGCLOUDCONFIG
       profile: dev
-      name: order
+
 
 eureka:
   client: #客户端信息
