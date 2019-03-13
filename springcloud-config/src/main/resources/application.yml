@@ -14,10 +14,10 @@ spring:
                                          #config客户端用的时候，name就是对应的application,
                                          #这样就可以实现不同项目根据不同文件夹区分，而不用创建多个仓库来区分
 
-#  security:
-#    user:
-#      name: admin
-#      password: 123456
+  security:
+    user:
+      name: admin
+      password: 123456
 
 eureka:
   client: #客户端信息

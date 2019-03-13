@@ -6,10 +6,10 @@ spring:
         service-id: SPRINGCLOUDCONFIG #config配置中心服务名
       profile: test #环境变量
       name: userconfig #文件名,匹配仓库userconfig下的userconfig-test文件
-#  security:
-#    user:
-#      name: admin
-#      password: 123456
+  security:
+    user:
+      name: admin
+      password: 123456
 
 
 
