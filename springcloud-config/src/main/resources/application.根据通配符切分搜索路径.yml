@@ -8,10 +8,12 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/HoldingTheTomcat/config-repo.git
-          username: 17778029272@163.com
-          password: tianheling2
-          basedir: D:/studySpace/springCloudDemo/springcloud-config/basedir  #为配置文件，创建本地仓库的地址
+          basedir: D:/studySpace/springCloudDemo/springcloud-config/application
+          uri: git@github.com:HoldingTheTomcat/userconfig.git #默认配置
+          search-paths: '{application}'  #需要在userconfig仓库创建application占位符对应的文件夹，并在该文件下，创建application对应的文件
+                                         #config客户端用的时候，name就是对应的application,
+                                         #这样就可以实现不同项目根据不同文件夹区分，而不用创建多个仓库来区分
+
   security:
     user:
       name: admin
@@ -42,3 +44,7 @@ management:
   endpoint:
     bus-refresh:
       enabled: true
+
+logging:
+  level: 
+    root: debug

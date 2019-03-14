@@ -5,7 +5,7 @@ spring:
         enabled: true
         service-id: SPRINGCLOUDCONFIG #config配置中心服务名
       profile: test #环境变量
-      name: userconfig #文件名,匹配仓库userconfig下的userconfig-test文件
+      name: order #文件名,匹配仓库order下的order-test文件
   security:
     user:
       name: admin
@@ -23,4 +23,4 @@ eureka:
       defaultZone: http://127.0.0.1:10086/eureka #将自己注册到Eureka集群上，注册中心的地址
       
       
-ip: 127.0.0.2
+ip: 172.0.022
