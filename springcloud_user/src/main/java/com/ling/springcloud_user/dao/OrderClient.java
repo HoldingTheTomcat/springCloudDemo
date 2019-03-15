@@ -2,8 +2,7 @@ package com.ling.springcloud_user.dao;
 
 import com.ling.springcloud_user.entity.Order;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * @author TianHeLing
@@ -13,8 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @FeignClient(value = "spring-cloud-order",path = "order" ,fallback = OrderClientFallback.class)
 public interface OrderClient {
 
-    @RequestMapping("getOne")
-    @ResponseBody
+    @PostMapping("getOne")
     Order getOrder();
     
 }

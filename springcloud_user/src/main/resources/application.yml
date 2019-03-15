@@ -26,8 +26,7 @@ eureka:
 
 logging:
   level:
-    com.ling.springcloud_user.dao: DEBUG  #指定feign设置日志输出级别，只有在debug的情况下才会打印日日志
-    root: info
+    com.ling.springcloud_user.dao: debug  #指定feign设置日志输出级别，只有在debug的情况下才会打印日日志
   file: /log/log/order.log
   
 spring-cloud-order:  #服务提供方名，如果不写服务名，那么是对所有的服务进行负载均衡
