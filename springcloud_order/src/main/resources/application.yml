@@ -1,9 +1,9 @@
 server:
-  port: ${port} #服务端口
+  port: ${port} #服务端口 # -Dport=10088
 
 spring:
   application:
-    name: spring-cloud-order  #指定服务名
+    name: order  #指定服务名
 
 eureka:
   client: #客户端信息
@@ -13,6 +13,7 @@ eureka:
     
     service-url: #Eureka客户端与Eureka服务端交互地址
        defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka #将自己注册到Eureka集群上，注册中心的地址
+    registry-fetch-interval-seconds: 5 #每隔5秒从EurekaServer获取新的服务列表，默认为30秒
        
   instance: #实例信息
     prefer-ip-address: true #当你获取host时，返回的是ip,而不是主机名

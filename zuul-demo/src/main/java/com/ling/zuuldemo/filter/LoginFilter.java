@@ -45,10 +45,10 @@ public class LoginFilter extends ZuulFilter {
         String token = req.getParameter("access-token");
         // 4) 判断
         if (token == null || "".equals(token.trim())) {
-            // 没有token，登录校验失败，拦截
-            ctx.setSendZuulResponse(false);
-            // 返回401状态码(未授权)。也可以考虑重定向到登录页。
+            // 未登录，拒绝访问，返回401状态码(未授权)。也可以考虑重定向到登录页。
             ctx.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
+            // 不再继续路由，拦截
+            ctx.setSendZuulResponse(false);
         }
         // 校验通过，可以考虑把用户信息放入上下文，继续向后执行
         return null;
