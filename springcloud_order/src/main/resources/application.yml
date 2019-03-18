@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: order  #指定服务名
+    name: springcloud-order  #指定服务名
 
 eureka:
   client: #客户端信息
