@@ -22,6 +22,8 @@ zuul:
   # routes: 直接不用配，它会自动把服务名作为映射路径
   # spring-cloud-order: /spring-cloud-order/** # 服务名：spring-cloud-order，映射路径：/spring-cloud-order/**
   retryable: true  #开启重试机制
+  ignored-patterns: 
+    - /product
 
 ribbon:
   NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule  #负载均衡策略
@@ -42,3 +44,14 @@ hystrix:
         isolation:
           thread:
             timeoutInMillisecond: 60000  # 设置hystrix的超时时间为6000ms，默认为1s
+
+# actuator 启用所有的监控端点 “*”号代表启用所有的监控端点，可以单独启用，例如，health，info，metrics
+# spring boot 升为 2.0 后，为了安全，默认 Actuator 只暴露了2个端点，heath 和 info
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS

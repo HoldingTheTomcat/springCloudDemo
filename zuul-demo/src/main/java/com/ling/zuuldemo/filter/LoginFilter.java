@@ -3,6 +3,7 @@ package com.ling.zuuldemo.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
@@ -19,13 +20,13 @@ public class LoginFilter extends ZuulFilter {
     @Override
     public String filterType() {
         // 登录校验，肯定是在前置拦截
-        return "pre";
+        return FilterConstants.PRE_TYPE;
     }
 
     @Override
     public int filterOrder() {
         // 顺序设置为1
-        return 1;
+        return FilterConstants.PRE_DECORATION_FILTER_ORDER-1;
     }
 
     @Override
