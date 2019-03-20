@@ -12,6 +12,8 @@ public class ZuulDemoApplication {
         SpringApplication.run(ZuulDemoApplication.class, args);
     }
 
+    
+
     // //版本号方式映射
     // @Bean
     // public PatternServiceRouteMapper serviceRouteMapper() {

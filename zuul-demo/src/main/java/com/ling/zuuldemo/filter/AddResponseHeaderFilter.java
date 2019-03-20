@@ -22,7 +22,7 @@ public class AddResponseHeaderFilter extends ZuulFilter {
 
     @Override
     public int filterOrder() {
-        return FilterConstants.SEND_RESPONSE_FILTER_ORDER-1; //SEND_RESPONSE_FILTER_ORDER之前
+        return FilterConstants.SEND_RESPONSE_FILTER_ORDER-1; //SEND_RESPONSE_FILTER_ORDER之前 
     }
 
     @Override

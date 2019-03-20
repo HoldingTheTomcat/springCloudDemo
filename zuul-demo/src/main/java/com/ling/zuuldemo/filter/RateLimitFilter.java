@@ -7,7 +7,7 @@ import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 
 /**
  * @author TianHeLing
- * @Description
+ * @Description 限流过滤器
  * @date 2019/3/19
  */
 public class RateLimitFilter extends ZuulFilter {
@@ -21,7 +21,7 @@ public class RateLimitFilter extends ZuulFilter {
 
     @Override
     public int filterOrder() {
-        return FilterConstants.SERVLET_DETECTION_FILTER_ORDER-1;
+        return FilterConstants.SERVLET_DETECTION_FILTER_ORDER-1; //即优先级最高即优先级最高
     }
 
     @Override

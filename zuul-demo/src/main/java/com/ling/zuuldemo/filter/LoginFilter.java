@@ -3,6 +3,8 @@ package com.ling.zuuldemo.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -11,10 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author TianHeLing
- * @Description
+ * @Description 认证过滤器
  * @date 2019/2/26
  */
-@Component
+@ConditionalOnProperty(name = "loginFilterConfig",havingValue = "true")
 public class LoginFilter extends ZuulFilter {
 
     @Override
@@ -25,7 +27,6 @@ public class LoginFilter extends ZuulFilter {
 
     @Override
     public int filterOrder() {
-        // 顺序设置为1
         return FilterConstants.PRE_DECORATION_FILTER_ORDER-1;
     }
 

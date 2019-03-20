@@ -18,11 +18,12 @@ eureka:
     instance-id: ${spring.application.name}:${server.port} #指定实例Id，一个服务下面可以有多个实例，即eureka服务可以有集群
 
 zuul:
+  sensitive-headers:   #为所有服务设置敏感头黑名单为空
   prefix: /api # 添加路由前缀，目的把服务间内部调用、其它外部调用，区分开
   # routes: 直接不用配，它会自动把服务名作为映射路径
   # spring-cloud-order: /spring-cloud-order/** # 服务名：spring-cloud-order，映射路径：/spring-cloud-order/**
   retryable: true  #开启重试机制
-  ignored-patterns: 
+  ignored-patterns:
     - /product
 
 ribbon:
@@ -55,3 +56,5 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+
+loginFilterConfig: false
