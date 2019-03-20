@@ -25,6 +25,7 @@ zuul:
   retryable: true  #开启重试机制
   ignored-patterns:
     - /product
+  add-host-header: true  #解决重定向，服务ip:port泄露问题
 
 ribbon:
   NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule  #负载均衡策略
