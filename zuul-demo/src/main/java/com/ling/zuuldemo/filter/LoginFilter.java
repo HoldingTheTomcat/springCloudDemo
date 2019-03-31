@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Description 认证过滤器
  * @date 2019/2/26
  */
-@ConditionalOnProperty(name = "loginFilterConfig",havingValue = "true")
+@ConditionalOnProperty(prefix = "properties.login",name = "enable",havingValue = "true")
 public class LoginFilter extends ZuulFilter {
 
     @Override
