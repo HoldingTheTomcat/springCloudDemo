@@ -22,7 +22,8 @@ public class OrderServeiImpl implements OrderService {
     //使用feignClient方式调用服务
     @Override
     public Order getOrderInfo() {
-        Order order = orderClient.getOrder();
+        
+        Order order = orderClient.getOrder("lisi");
         return order;
     }
     

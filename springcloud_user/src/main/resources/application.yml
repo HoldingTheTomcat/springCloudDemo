@@ -1,15 +1,12 @@
 server:
   port: ${port} # -Dport=10089
-  
 spring:
   application:
     name: user-client #指定服务名
-  
   cloud:
     loadbalancer:
       retry:
         enabled:  true # 开启Spring Cloud的重试功能
-
 eureka:
   client:
     #因为是客户端，默认可以不配，所以以下就注释掉了
@@ -22,35 +19,31 @@ eureka:
     prefer-ip-address: true #当你获取host时，返回的是ip,而不是主机名
     ip-address: 127.0.0.1 # 指定自己的ip信息，不指定的话会自己寻找
     instance-id: ${spring.application.name}:${server.port} #指定实例Id，一个服务下面可以有多个实例，即eureka服务可以有集群
-
 logging:
   level:
     com.ling.springcloud_user.dao: DEBUG  #指定feign设置日志输出级别，只有在debug的情况下才会打印日日志
     root: info
-  file: /log/log/order.log
-  
-spring-cloud-order:  #服务提供方名，如果不写服务名，那么是对所有的服务进行负载均衡
+  file: /log/log/order.log 
+springcloud-order:  #服务提供方名，如果不写服务名，那么是对所有的服务进行负载均衡
     ribbon:
       NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule  #负载均衡策略
-      
+    
       #重试机制相关配置
-      ConnectTimeout: 250 # Ribbon的连接超时时间，超过这个时间就认为这个服务不可用了，重试下一个
-      ReadTimeout: 1000 # Ribbon的数据读取超时时间，读取超时后重试下一个
+      ConnectTimeout: 8500 # Ribbon的连接超时时间，超过这个时间就认为这个服务不可用了，重试下一个
+      ReadTimeout: 20000 # Ribbon的数据读取超时时间，读取超时后重试下一个
       OkToRetryOnAllOperations: true # 是否对所有操作都进行重试
       MaxAutoRetriesNextServer: 1 # 切换实例的重试次数，这个联不通，我切下一个，如果还不通，就不会再切了，不能一直切，
                                   # 浏览器等不及，客户也等不及,所以这里设置只重试一次
       MaxAutoRetries: 1 # 对当前实例的重试次数，如果当前服务挂了，要不要在当前服务上也重试一下
-
 feign:
   hystrix:
     enabled: true # 开启Feign的熔断功能,默认是关闭的
-  
 #熔断超时时间设置  
-hystrix: 
+hystrix:
   command:
-      default:
-        execution:
-          isolation:
-            thread:
-              timeoutInMillisecond: 2000  # 设置hystrix的超时时间为6000ms，默认为1s
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000 # 设置hystrix的超时时间为6000ms，默认为1s
 

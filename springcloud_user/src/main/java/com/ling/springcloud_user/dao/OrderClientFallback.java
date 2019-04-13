@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderClientFallback implements OrderClient {
     @Override
-    public Order getOrder() {
+    public Order getOrder(String name) {
         Order order = new Order();
         order.setName("订单查询出现异常");
         return order;
