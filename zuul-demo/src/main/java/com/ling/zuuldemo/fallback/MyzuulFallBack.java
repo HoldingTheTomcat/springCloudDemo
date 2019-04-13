@@ -31,7 +31,7 @@ public class MyzuulFallBack implements FallbackProvider {
         return new ClientHttpResponse() {
 
             /**
-             * 状态码另外一种说话
+             * 状态码另外一种说法
              * 
              * 网关向 api 服务请求失败了，但是消费者客户端向网关发起的请求是成功的，
              * 不应该把 api 的 404,500 等问题抛给客户端

@@ -8,6 +8,8 @@ import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.http.HttpStatus;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * @author TianHeLing
@@ -38,17 +40,25 @@ public class LoginFilter extends ZuulFilter {
     public Object run() throws ZuulException {
         // 登录校验逻辑。
         // 1）获取Zuul提供的请求上下文对象
-        RequestContext ctx = RequestContext.getCurrentContext();
+        RequestContext context = RequestContext.getCurrentContext();
         // 2) 从上下文中获取request对象
-        HttpServletRequest req = ctx.getRequest();
+        HttpServletRequest req = context.getRequest();
         // 3) 从请求中获取token
         String token = req.getParameter("access-token");
         // 4) 判断
         if (token == null || "".equals(token.trim())) {
             // 未登录，拒绝访问，返回401状态码(未授权)。也可以考虑重定向到登录页。
-            ctx.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
+            context.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
             // 不再继续路由，拦截
-            ctx.setSendZuulResponse(false);
+            context.setSendZuulResponse(false);
+            //返回登录页面
+            try {
+                HttpServletResponse response = context.getResponse();
+                response.setContentType("text/html；charset=utf-8");
+                response.getWriter().write("非法请求");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         // 校验通过，可以考虑把用户信息放入上下文，继续向后执行
         return null;
