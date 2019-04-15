@@ -5,6 +5,7 @@ import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Description 认证过滤器
  * @date 2019/2/26
  */
+@Configuration
 @ConditionalOnProperty(prefix = "properties.login",name = "enable",havingValue = "true")
 public class LoginFilter extends ZuulFilter {
 
