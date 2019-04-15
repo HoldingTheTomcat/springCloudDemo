@@ -5,7 +5,7 @@ spring:
         enabled: true
         service-id: SPRINGCLOUDCONFIG #config配置中心服务名
       profile: test #环境变量
-      name: order #文件名,匹配仓库order下的order-test文件
+      name: base,springcloud_order #文件名,即可以同时加载多个，匹配仓库下的springcloud_order文件夹下的springcloud_order文件
   security:
     user:
       name: admin

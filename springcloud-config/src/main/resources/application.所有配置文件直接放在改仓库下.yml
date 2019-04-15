@@ -8,16 +8,14 @@ spring:
     config:
       server:
         git:
-          basedir: D:/studySpace/springCloudDemo/springcloud-config/userconfig
-          uri: git@github.com:HoldingTheTomcat/userconfig.git #默认配置
-          search-paths: 
-            - abc  # 需要在仓库userconfig下仓库abc文件夹，并在abc文件夹下创建abc文件,abc就做为config客户端的name
-            - def  # 需要在仓库userconfig下仓库def文件夹，并在def文件夹下创建def文件,def就做为config客户端的name
-
-#  security:
-#    user:
-#      name: admin
-#      password: 123456
+          uri: https://github.com/HoldingTheTomcat/order.git  #所有配置文件直接放在改仓库下，没有目录切割
+          username: 17778029272@163.com
+          password: tianheling2
+          basedir: D:/studySpace/springCloudDemo/springcloud-config/order  #为配置文件，创建本地仓库的地址
+  security:
+    user:
+      name: admin
+      password: 123456
 
 eureka:
   client: #客户端信息
@@ -44,7 +42,3 @@ management:
   endpoint:
     bus-refresh:
       enabled: true
-
-logging:
-  level: 
-    root: debug

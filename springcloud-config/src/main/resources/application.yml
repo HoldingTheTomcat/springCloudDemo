@@ -8,10 +8,11 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/HoldingTheTomcat/order.git
+          uri: git@github.com:HoldingTheTomcat/spring-cloud-config.git  #所有配置文件直接放在改仓库下，没有目录切割
           username: 17778029272@163.com
           password: tianheling2
-          basedir: D:/studySpace/springCloudDemo/springcloud-config/order  #为配置文件，创建本地仓库的地址
+          search-paths: '{application}'
+          #basedir: D:/studySpace/springCloudDemo/springcloud-config/order  #为配置文件，创建本地仓库的地址
   security:
     user:
       name: admin
