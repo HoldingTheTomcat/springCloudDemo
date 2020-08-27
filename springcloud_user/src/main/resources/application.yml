@@ -23,11 +23,11 @@ logging:
   level:
     com.ling.springcloud_user.dao: DEBUG  #指定feign设置日志输出级别，只有在debug的情况下才会打印日日志
     root: info
-  file: /log/log/order.log 
+  file: /log/log/order.log
 springcloud-order:  #服务提供方名，如果不写服务名，那么是对所有的服务进行负载均衡
     ribbon:
       NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule  #负载均衡策略
-    
+
       #重试机制相关配置
       ConnectTimeout: 8500 # Ribbon的连接超时时间，超过这个时间就认为这个服务不可用了，重试下一个
       ReadTimeout: 20000 # Ribbon的数据读取超时时间，读取超时后重试下一个
@@ -38,12 +38,25 @@ springcloud-order:  #服务提供方名，如果不写服务名，那么是对�
 feign:
   hystrix:
     enabled: true # 开启Feign的熔断功能,默认是关闭的
-#熔断超时时间设置  
+#熔断超时时间设置
 hystrix:
+  threadpool:
+    default:
+      coreSize: 200 #线程池核心线程数，默认10
+      maxQueueSize: 1000 #最大排队长度。默认-1,该值不能动态调整,调整后需要重启
+      queueSizeRejectionThreshold: 800 #排队线程数量阈值，默认为5，达到时拒绝，
+                                       #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝，默认值5
   command:
     default:
+      circuitBreaker:
+        requestVolumeThreshold: 50 # 当在配置时间窗口内达到此数量的失败后，进行短路。默认20个
+                                   # 简言之，10s内请求失败数量达到20个，断路器开
+        sleepWindowInMilliseconds: 5000 #短路多久以后开始尝试是否恢复，默认5s
       execution:
         isolation:
+          semaphore:
+            maxConcurrentRequests: 1000 #调用线程允许请求HystrixCommand.GetFallback()的最大数量，默认10。超出时将会有异常抛出
+            strategy: SEMAPHORE
           thread:
             timeoutInMilliseconds: 60000 # 设置hystrix的超时时间为6000ms，默认为1s
 
