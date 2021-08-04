@@ -1,5 +1,8 @@
 server:
   port: 10010 #服务端口
+  #增大tomcat中worker的最大线程数量
+  tomcat:
+    max-threads: 500  #默认200
 spring:
   application:
     name: api-gateway #指定服务名
@@ -26,10 +29,14 @@ zuul:
   ignored-patterns:
     - /product
   add-host-header: true  #解决重定向，服务ip:port泄露问题
+  #全局信号量设置
+  semaphore:
+    max-semaphores: 5000 #默认100
+  
+
 
 ribbon:
   NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule  #负载均衡策略
-
   #重试机制相关配置
   ConnectTimeout: 250 # Ribbon的连接超时时间，超过这个时间就认为这个服务不可用了，重试下一个
   ReadTimeout: 5000 # Ribbon的数据读取超时时间，读取超时后重试下一个
@@ -37,7 +44,11 @@ ribbon:
   MaxAutoRetriesNextServer: 2 # 切换实例的重试次数，这个联不通，我切下一个，如果还不通，就不会再切了，不能一直切，
   # 浏览器等不及，客户也等不及,所以这里设置只重试一次
   MaxAutoRetries: 1 # 对当前实例的重试次数，如果当前服务挂了，要不要在当前服务上也重试一下
-
+  #Ribbon允许最大连接数，即所有后端微服务实例请求并发数之和的最大值。默认值200
+  MaxTotalConnections: 500
+  #单个后端微服务实例能接收的最大请求并发数，默认值50  
+  MaxConnectionsPerHost: 500
+  
 #熔断超时时间设置  
 hystrix:
   command:

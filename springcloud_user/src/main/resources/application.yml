@@ -43,7 +43,13 @@ hystrix:
   threadpool:
     default:
       coreSize: 200 #线程池核心线程数，默认10
+      maximumSize: 400  #最大线程数量，默认10
+      # 是否让maximumSize生效，false的话，则只有coreSize会生效
+      allowMaximumSizeToDivergeFromCoreSize: true
+      # 最大排队长度，默认-1代表使用SynchronousQueue队列，该值不能动态调整,调整后需要重启
       maxQueueSize: 1000 #最大排队长度。默认-1,该值不能动态调整,调整后需要重启
+      #排队线程数量阈值，默认为5，达到时拒绝，
+      #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝，默认值5
       queueSizeRejectionThreshold: 800 #排队线程数量阈值，默认为5，达到时拒绝，
                                        #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝，默认值5
   command:
