@@ -1,7 +1,7 @@
 package com.ling.springcloud_order.entity;
 
 /**
- * Created by LingZi on 2018/11/24. 111
+ * Created by LingZi on 2018/11/24. 1112222
  */
 public class Order {
     private String name;
